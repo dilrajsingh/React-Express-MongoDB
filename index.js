@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 
 // creates a new instance of the Google strategy
-passport.use(
+/* passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
@@ -24,9 +24,7 @@ passport.use(
         console.log(accessToken);
     })
 ); 
-
-// route user is sent to when granted permission
-
+*/
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
