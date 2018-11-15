@@ -6,6 +6,18 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+// user coming from OAuth flow
+passport.serializeUser((user, done) => {
+    done(null, user.id); // this id is NOT the google profile ID, it's the mongoDB one because we can't assume everyone has a google id
+});
+
+passport.deserializeUser((id, done) =>{
+    User.findById(id)
+        .then(user => {
+            done(null, user);
+    });
+});
+
 passport.use(new GoogleStrategy(
     {
         clientID: keys.googleClientID,
@@ -19,7 +31,7 @@ passport.use(new GoogleStrategy(
                 // record found
                 if (existingUser) {
                     
-                    // tells passport that we are finished here
+                    // callback tells passport that we are finished here
                     done(null, existingUser);
                 }
                 //create user
