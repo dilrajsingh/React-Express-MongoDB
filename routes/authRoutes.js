@@ -11,7 +11,12 @@ module.exports = (app) => {
 
     app.get('/auth/google/callback', passport.authenticate('google'));
 
-    // req.user tested
+    app.get('/api/logout', (req, res) => {
+        req.logout();
+        res.send(req.user); // should get back undefined if logged out
+    });
+
+    // test if authentication succeeded
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
     });
