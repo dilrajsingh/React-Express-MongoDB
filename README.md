@@ -6,6 +6,9 @@
 ** ***Currently work in progress*** **
 Goal here is to create a survey page that requires users to login using Google Authentication.
 
+Here is a link to the Heroku server where you can login with your Google account:
+https://react-express-mongodb.herokuapp.com/auth/google
+
 # Features
 ----
   - This project will require building a React front-end (probably with Redux, has not yet been finalized),
