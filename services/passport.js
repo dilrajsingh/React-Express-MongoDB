@@ -25,24 +25,20 @@ passport.use(new GoogleStrategy(
         callbackURL: '/auth/google/callback',
         proxy: true
     }, 
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
         // async action, this returns a promise
-        User.findOne({ googleId: profile.id })
-            .then((existingUser) => {
-                // record found
-                if (existingUser) {
-                    
-                    // callback tells passport that we are finished here
-                    done(null, existingUser);
-                }
-                //create user
-                else {
-                    // new model instance of a user, .save() saves it to db
-                    new User({ googleId: profile.id })
-                        .save()
-                        .then(user => done(null, user)); // do not call done until the async operation completes
-                }
-            });
+        const existingUser = await User.findOne({ googleId: profile.id })
+
+        // record found
+        if (existingUser) {
+            // callback tells passport that we are finished here
+            return done(null, existingUser);
+
+        }
+        //create user, new model instance of a user, .save() saves it to db
+        const user = await new User({ googleId: profile.id }).save()
+        done(null, user); 
+         
         // console.log('access token', accessToken);
         // console.log('refersh token', refreshToken);
         // console.log('profile', profile);
