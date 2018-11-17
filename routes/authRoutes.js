@@ -9,11 +9,18 @@ module.exports = (app) => {
         })
     );
 
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback', 
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/surveys');
+        }
+    ); 
 
     app.get('/api/logout', (req, res) => {
         req.logout();
-        res.send(req.user); // should get back undefined if logged out
+        // res.send(req.user); // should get back undefined if logged out
+        res.redirect('/');
     });
 
     // Is user signed in or not? Also used earlier to test if authentication succeeded
