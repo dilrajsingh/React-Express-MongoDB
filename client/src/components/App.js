@@ -8,9 +8,9 @@ import { BrowserRouter, Route } from 'react-router-dom'; // react components
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-// Dummy components to test routers
-import Header from './Header'
-const Landing = () => <h2>Landing</h2>
+// Dummy components + actual compponents (slowly to be replaced)
+import Header from './Header';
+import Landing from '.Landing';
 const Dashboard = () => <h2>Dashboard</h2>
 const SurveyNew = () => <h2>SurveyNew</h2>
 
