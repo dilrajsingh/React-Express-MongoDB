@@ -5,6 +5,7 @@
 ---
 ** ***Currently work in progress*** **
 Goal here is to create a survey page that requires users to login using Google Authentication.
+Users will use Stripe's credit card payment method system to acquire credits to be used on the website. All transactions will be mocked.
 
 Here is a link to the Heroku server where you can login with your Google account (it may be down as I am working on it):
 https://react-express-mongodb.herokuapp.com/auth/google
