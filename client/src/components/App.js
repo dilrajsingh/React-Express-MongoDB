@@ -10,7 +10,7 @@ import * as actions from '../actions';
 
 // Dummy components + actual compponents (slowly to be replaced)
 import Header from './Header';
-import Landing from '.Landing';
+import Landing from './Landing';
 const Dashboard = () => <h2>Dashboard</h2>
 const SurveyNew = () => <h2>SurveyNew</h2>
 
