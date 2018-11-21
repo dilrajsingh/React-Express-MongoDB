@@ -3,7 +3,14 @@
 
 const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
+
 module.exports = (app) => {
+
+    // check if user is logged in
+    if (!req.user) {
+        return res.status(401).send({ error: 'You must log in!'});
+    }
+
     app.post('/api/stripe', async (req, res) => {
         // console.log(req.body);
         const charge = await stripe.charges.create({
@@ -12,7 +19,13 @@ module.exports = (app) => {
             description: '$5 for 5 credits',
             source: req.body.id
         });
-
-        console.log(charge);
+        // console.log(charge);
+        
+        // add five credits 
+        req.user.credits += 5;
+        const user = await req.user.save();
+        
+        // send back to browser
+        res.send(user);
     });
 };
