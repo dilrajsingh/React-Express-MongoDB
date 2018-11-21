@@ -3,15 +3,13 @@
 
 const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
+const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = (app) => {
 
-    // check if user is logged in
-    if (!req.user) {
-        return res.status(401).send({ error: 'You must log in!'});
-    }
-
-    app.post('/api/stripe', async (req, res) => {
+    // you can pass as many middlewares as you want here, but one of them has to send a response 
+    // that's a requirement of express
+    app.post('/api/stripe', requireLogin, async (req, res) => {
         // console.log(req.body);
         const charge = await stripe.charges.create({
             amount: 500,
