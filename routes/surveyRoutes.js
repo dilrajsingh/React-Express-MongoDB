@@ -24,5 +24,5 @@ module.exports = app => {
         })
     });
     // Mailer code here, send an email! Send the survey information and the html template.
-    const mailer = new Mailer(survey, surveyTemplate);
+    const mailer = new Mailer(survey, surveyTemplate(survey));
 };
