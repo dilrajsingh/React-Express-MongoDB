@@ -6,6 +6,7 @@ const Survey = mongoose.model('surveys');
 // check if user is logged in
 // check if user has enough credits, needs at least one
 module.exports = app => {
+    // this request creates a survey and sends out a big email
     app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
         const { title, subject, body, recipients } = req.body;
 
