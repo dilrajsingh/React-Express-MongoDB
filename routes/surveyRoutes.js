@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
-const requireCredits = require('../middlewares/requireCredits')
+const requireCredits = require('../middlewares/requireCredits');
+const Mailer = require('../services/Mailer');
 
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
+
 // check if user is logged in
 // check if user has enough credits, needs at least one
 module.exports = app => {
@@ -20,4 +23,6 @@ module.exports = app => {
             dateSent: Date.now()
         })
     });
+    // Mailer code here, send an email! Send the survey information and the html template.
+    const mailer = new Mailer(survey, surveyTemplate);
 };

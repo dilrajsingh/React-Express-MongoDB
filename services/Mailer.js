@@ -7,5 +7,7 @@ const keys = require('../config/keys');
 // from "Mail class" we want to add some additional features. Thus, extended/inherited
 class Mailer extends helper.Mail {
 
-    
+
 }
+
+module.exports = Mailer;
